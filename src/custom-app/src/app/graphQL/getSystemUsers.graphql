@@ -1,0 +1,13 @@
+query GetSystemUsers {
+  runtime {
+    user(first: 100) {
+      edges {
+        node {
+          rtId
+          userName
+          email
+        }
+      }
+    }
+  }
+}

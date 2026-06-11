@@ -1,0 +1,15 @@
+<div class="p-6">
+  <h1 class="text-2xl font-semibold mb-4">
+    {{ 'PAGES.SYSTEM_USER_LIST.TITLE' | translate }}
+  </h1>
+  <kendo-grid [data]="users()" [loading]="loading()">
+    <kendo-grid-column
+      field="userName"
+      [title]="'PAGES.SYSTEM_USER_LIST.COLUMN_NAME' | translate"
+    ></kendo-grid-column>
+    <kendo-grid-column
+      field="email"
+      [title]="'PAGES.SYSTEM_USER_LIST.COLUMN_EMAIL' | translate"
+    ></kendo-grid-column>
+  </kendo-grid>
+</div>

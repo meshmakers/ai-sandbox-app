@@ -28,6 +28,19 @@ export const routes: Routes = [
         },
       },
       {
+        path: 'system-user-list',
+        loadComponent: () =>
+          import('./pages/system-user-list/system-user-list').then(
+            (m) => m.SystemUserListComponent,
+          ),
+        data: {
+          breadcrumb: [
+            { label: 'Home', url: '' },
+            { label: 'System User List' },
+          ],
+        },
+      },
+      {
         path: 'developer-info',
         component: DeveloperInfoComponent,
         data: {
