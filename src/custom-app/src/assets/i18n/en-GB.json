@@ -6,6 +6,13 @@
     "WELCOME": "Welcome to CustomApp",
     "GETTING_STARTED": "Getting Started"
   },
+  "PAGES": {
+    "AUTO_INCREMENT_LIST": {
+      "TITLE": "Auto Increment List",
+      "COLUMN_NAME": "Name",
+      "COLUMN_CURRENT_VALUE": "Current Value"
+    }
+  },
   "COMMON": {
     "SAVE": "Save",
     "CANCEL": "Cancel",

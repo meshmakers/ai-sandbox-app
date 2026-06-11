@@ -1,0 +1,13 @@
+query GetAutoIncrements {
+  runtime {
+    systemAutoIncrement {
+      edges {
+        node {
+          rtId
+          rtWellKnownName
+          currentValue
+        }
+      }
+    }
+  }
+}

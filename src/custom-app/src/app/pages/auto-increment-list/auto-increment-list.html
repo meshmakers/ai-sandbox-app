@@ -1,0 +1,20 @@
+<div class="p-6">
+  <h1 class="text-2xl font-semibold mb-4">
+    {{ 'PAGES.AUTO_INCREMENT_LIST.TITLE' | translate }}
+  </h1>
+
+  <kendo-grid [data]="rows()" [loading]="loading()">
+    <kendo-grid-column
+      field="name"
+      [title]="'PAGES.AUTO_INCREMENT_LIST.COLUMN_NAME' | translate"
+    ></kendo-grid-column>
+    <kendo-grid-column
+      field="currentValue"
+      [title]="'PAGES.AUTO_INCREMENT_LIST.COLUMN_CURRENT_VALUE' | translate"
+    ></kendo-grid-column>
+
+    <ng-template kendoGridNoRecordsTemplate>
+      {{ 'LIST_VIEW.NO_RECORDS' | translate }}
+    </ng-template>
+  </kendo-grid>
+</div>
