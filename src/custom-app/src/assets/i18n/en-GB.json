@@ -49,6 +49,13 @@
     "PAGER_NEXT_PAGE": "Go to the next page",
     "NO_RECORDS": "No records available."
   },
+  "PAGES": {
+    "SYSTEM_USER_DETAIL": {
+      "TITLE": "System User Detail",
+      "NAME": "Name",
+      "EMAIL": "Email"
+    }
+  },
   "MAINTENANCE": {
     "TITLE": "Maintenance Mode",
     "MESSAGE": "The application is currently undergoing maintenance and is temporarily unavailable.",

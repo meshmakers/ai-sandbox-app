@@ -1,0 +1,27 @@
+<div class="p-6">
+  <h1 class="text-2xl font-semibold mb-4">
+    {{ 'PAGES.SYSTEM_USER_DETAIL.TITLE' | translate }}
+  </h1>
+
+  @if (loading()) {
+    <p>{{ 'COMMON.LOADING' | translate }}</p>
+  } @else if (user(); as systemUser) {
+    <div class="flex flex-col gap-4 max-w-md">
+      <div class="flex flex-col gap-1">
+        <kendo-label
+          [text]="'PAGES.SYSTEM_USER_DETAIL.NAME' | translate"
+        ></kendo-label>
+        <kendo-textbox [value]="systemUser.name" [readonly]="true"></kendo-textbox>
+      </div>
+
+      <div class="flex flex-col gap-1">
+        <kendo-label
+          [text]="'PAGES.SYSTEM_USER_DETAIL.EMAIL' | translate"
+        ></kendo-label>
+        <kendo-textbox [value]="systemUser.email" [readonly]="true"></kendo-textbox>
+      </div>
+    </div>
+  } @else {
+    <p>{{ 'COMMON.NO_DATA' | translate }}</p>
+  }
+</div>

@@ -37,6 +37,19 @@ export const routes: Routes = [
           ],
         },
       },
+      {
+        path: 'users/:id',
+        loadComponent: () =>
+          import('./pages/system-user-detail/system-user-detail').then(
+            (m) => m.SystemUserDetailComponent,
+          ),
+        data: {
+          breadcrumb: [
+            { label: 'Home', url: '' },
+            { label: 'System User Detail' },
+          ],
+        },
+      },
     ],
   },
   {

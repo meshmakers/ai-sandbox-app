@@ -1,0 +1,13 @@
+query GetSystemUser($rtId: String!) {
+  runtime {
+    user(first: 1, rtId: $rtId) {
+      edges {
+        node {
+          rtId
+          userName
+          email
+        }
+      }
+    }
+  }
+}
