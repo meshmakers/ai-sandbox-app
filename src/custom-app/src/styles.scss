@@ -1,0 +1,136 @@
+@use 'tailwindcss';
+
+@use 'flag-icons/sass/flag-icons' with (
+  $flag-icons-square-path: '/4x3',
+  $flag-icons-path: 'flag-icons/flags',
+  $flag-icons-included-countries: (
+    gb,
+  )
+);
+
+@theme {
+  --color-primary: #3f51b5;
+  --color-secondary: #ff4081;
+  --color-tertiary: #4caf50;
+  --color-primary-text: #333;
+  --header-line: #e0e0e0;
+}
+
+@layer base {
+  html[data-theme='dark'] {
+    --color-primary: #7986cb;
+    --color-secondary: #ff80ab;
+    --color-tertiary: #81c784;
+    --color-primary-text: #e0e0e0;
+    --header-line: #444;
+  }
+}
+
+:root {
+  --kendo-color-primary: #3f51b5;
+  --kendo-color-primary-hover: #3949ab;
+  --kendo-color-primary-active: #303f9f;
+  --kendo-color-primary-focus: #3f51b5;
+  --kendo-color-primary-emphasis: rgba(63, 81, 181, 0.4);
+  --kendo-color-on-primary: #fff;
+  --kendo-color-primary-subtle: #e8eaf6;
+  --kendo-color-primary-subtle-hover: #c5cae9;
+  --kendo-color-primary-subtle-active: #9fa8da;
+  --kendo-color-on-primary-subtle: #303f9f;
+  --kendo-color-primary-on-surface: #3f51b5;
+  --kendo-color-primary-on-subtle: #303f9f;
+}
+
+.mm-loading-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+.mm-loading {
+  width: 80px;
+  height: 80px;
+}
+
+* {
+  scrollbar-width: thin;
+}
+
+body {
+  margin: 0;
+  font-family:
+    'Segoe UI',
+    Tahoma,
+    Geneva,
+    Verdana,
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+app-root {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  overflow: hidden;
+}
+
+kendo-appbar {
+  flex-shrink: 0;
+}
+
+kendo-drawer-container {
+  flex: 1;
+  min-height: 0;
+  display: flex;
+  overflow: hidden;
+}
+
+kendo-drawer-content {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  height: 100%;
+  min-height: 0;
+  overflow: hidden !important;
+}
+
+.octo-body {
+  flex: 1;
+  min-height: 0;
+  overflow-y: auto;
+  padding: 1rem;
+  scrollbar-width: thin;
+
+  .mm-base-form-container {
+    height: auto !important;
+    overflow: visible !important;
+
+    .mm-form-actions {
+      position: sticky;
+      bottom: -1rem;
+      z-index: 10;
+      margin-left: calc(-1 * var(--mm-form-padding, 1.5rem));
+      margin-right: calc(-1 * var(--mm-form-padding, 1.5rem));
+      padding: 0.75rem var(--mm-form-padding, 1.5rem);
+      background: var(--kendo-color-surface, #fff);
+      border-top: 1px solid var(--kendo-color-border, #e0e0e0);
+    }
+  }
+}
+
+router-outlet {
+  display: none;
+}
+
+[kendodialogcontainer] {
+  flex: 0;
+}
+
+* {
+  transition:
+    background-color 0.2s ease,
+    color 0.2s ease,
+    border-color 0.2s ease;
+}

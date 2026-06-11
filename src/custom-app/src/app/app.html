@@ -1,0 +1,69 @@
+@if (maintenanceMode$ | async) {
+  <app-maintenance-mode />
+} @else {
+<kendo-appbar position="top" themeColor="dark">
+  <kendo-appbar-section>
+    <button kendoButton fillMode="flat" (click)="toggleDrawer()">
+      <kendo-svg-icon [icon]="menuIcon"></kendo-svg-icon>
+    </button>
+  </kendo-appbar-section>
+
+  <kendo-appbar-section>
+    <h1 class="title">CustomApp</h1>
+  </kendo-appbar-section>
+
+  <kendo-appbar-spacer></kendo-appbar-spacer>
+
+  <kendo-appbar-section>
+    <span class="version-label">v{{ version }}</span>
+  </kendo-appbar-section>
+
+  <kendo-appbar-spacer width="16px"></kendo-appbar-spacer>
+
+  <kendo-appbar-section>
+    <button
+      kendoButton
+      fillMode="flat"
+      (click)="themeService.toggle()"
+      [title]="themeService.isDark() ? 'Switch to light mode' : 'Switch to dark mode'"
+    >
+      @if (themeService.isDark()) {
+        <kendo-svg-icon [icon]="lightModeIcon"></kendo-svg-icon>
+      } @else {
+        <kendo-svg-icon [icon]="darkModeIcon"></kendo-svg-icon>
+      }
+    </button>
+  </kendo-appbar-section>
+
+  <kendo-appbar-section>
+    <mm-login-app-bar-section />
+  </kendo-appbar-section>
+</kendo-appbar>
+
+<kendo-drawer-container>
+  <kendo-drawer
+    #drawer
+    [items]="(drawerItems$ | async) ?? []"
+    mode="push"
+    [mini]="true"
+    [expanded]="expanded()"
+    [autoCollapse]="false"
+    (select)="onDrawerSelect($event)"
+    [isItemExpanded]="isItemExpanded"
+  >
+  </kendo-drawer>
+
+  <kendo-drawer-content>
+    <div class="header-area px-4 py-2">
+      <kendo-breadcrumb
+        [items]="(breadCrumbItems$ | async) ?? []"
+        (itemClick)="onBreadCrumbItemClick($event)"
+      ></kendo-breadcrumb>
+    </div>
+    <div class="octo-body">
+      <router-outlet />
+    </div>
+  </kendo-drawer-content>
+</kendo-drawer-container>
+<div kendoDialogContainer></div>
+}

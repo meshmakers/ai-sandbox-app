@@ -1,0 +1,68 @@
+name: $(MajorVersion).$(MinorVersion).$(date:yyMM).$(DayOfMonth)$(rev:rrr)-$(Build.SourceBranchName)
+
+trigger:
+  batch: true
+  branches:
+    include:
+      - dev/*
+      - test/*
+      - main
+  tags:
+    include:
+      - 'r*'
+
+variables:
+  - group: GitSSHGroup
+  - group: ApiKeys-mm-cloud
+  - group: OctoDefault
+  - name: isRelease
+    value: ${{ startsWith(variables['Build.SourceBranch'], 'refs/tags/r') }}
+  - name: isMain
+    value: ${{ eq(variables['Build.SourceBranch'], 'refs/heads/main') }}
+  - name: isTest
+    value: ${{ startsWith(variables['Build.SourceBranch'], 'refs/heads/test') }}
+  - name: OctoLibVersion
+    value: 'beta' # overridden at runtime by update-build-number.yml (beta/test/latest)
+
+stages:
+  - stage: Build
+    jobs:
+      - job: frontend
+        displayName: Frontend Build
+        pool:
+          name: meshmakers-ci-agents
+        steps:
+          - template: update-build-number.yml
+          - checkout: self
+            clean: true
+            submodules: recursive
+          - template: set-version.yml
+          - task: InstallSSHKey@0
+            inputs:
+              knownHostsEntry: '$(SSHKnownHosts)'
+              sshPublicKey: '$(SSHPublicKey)'
+              sshPassphrase: '$(SSHPassphrase)'
+              sshKeySecureFile: '$(SSHPrivateKeyFile)'
+          - template: download-ca.yml
+          - template: setup-telerik-license.yml
+          - template: run-tests.yml
+          - template: build-and-push-docker-image.yml
+            parameters:
+              PublicRegistryServiceConnection: $(DockerRegistryPublicAcrConnection)
+              PrivateRegistryName: $(DockerRegistryPrivateUri)
+              PublicRegistryName: $(DockerRegistryInternalUri)
+              Repository: meshmakers/custom-app
+              Dockerfile: src/custom-app/Dockerfile
+          - task: HelmInstaller@1
+            displayName: 'Install Helm'
+            inputs:
+              helmVersionToInstall: '3.19.0'
+          - task: HelmDeploy@0
+            displayName: 'helm package custom-app'
+            inputs:
+              command: package
+              chartPath: '$(System.DefaultWorkingDirectory)/src/charts/custom-app'
+              chartVersion: '$(BuildNumberShort)'
+              destination: '$(Build.artifactstagingdirectory)'
+              arguments: '--app-version $(Build.BuildNumber) --dependency-update'
+          - template: handle-artifacts.yml
