@@ -5,6 +5,7 @@ import { languageGuard } from './guards/language.guard';
 import { LanguageService } from './services/language.service';
 import { HomeComponent } from './pages/home/home';
 import { DeveloperInfoComponent } from './pages/developer-info/developer-info';
+import { SystemPermissions } from './pages/system-permissions/system-permissions';
 
 export const routes: Routes = [
   {
@@ -34,6 +35,16 @@ export const routes: Routes = [
           breadcrumb: [
             { label: 'Home', url: '' },
             { label: 'Developer Info' },
+          ],
+        },
+      },
+      {
+        path: 'permissions',
+        component: SystemPermissions,
+        data: {
+          breadcrumb: [
+            { label: 'Home', url: '' },
+            { label: 'System Permissions' },
           ],
         },
       },

@@ -1,0 +1,19 @@
+<div class="p-6">
+  <h1 class="text-2xl font-semibold mb-4">System Permissions</h1>
+  <p class="text-base leading-relaxed mb-4">
+    OAuth API scopes available in this tenant, listed by name.
+  </p>
+
+  @if (permissions().length > 0) {
+    <ul class="space-y-2">
+      @for (permission of permissions(); track permission.name) {
+        <li class="flex flex-col">
+          <code class="font-medium">{{ permission.name }}</code>
+          <span class="text-sm text-gray-500">{{ permission.displayName }}</span>
+        </li>
+      }
+    </ul>
+  } @else {
+    <p class="text-sm text-gray-500">No scopes available.</p>
+  }
+</div>
