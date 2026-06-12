@@ -4,7 +4,7 @@ import {
   CommandItem,
   CommandSettingsService,
 } from '@meshmakers/shared-services';
-import { developerBoardIcon, homeIcon } from '../custom-svg-icons';
+import { developerBoardIcon, homeIcon, peopleIcon } from '../custom-svg-icons';
 
 @Injectable()
 export class MyCommandSettingsService extends CommandSettingsService {
@@ -30,6 +30,13 @@ export class MyCommandSettingsService extends CommandSettingsService {
         text: 'Developer Info',
         svgIcon: developerBoardIcon,
         link: async (): Promise<string> => 'developer-info',
+      },
+      {
+        id: 'roles',
+        type: 'link',
+        text: 'System Roles',
+        svgIcon: peopleIcon,
+        link: async (): Promise<string> => 'roles',
       },
     ];
   }

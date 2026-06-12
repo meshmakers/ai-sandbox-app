@@ -5,6 +5,7 @@ import { languageGuard } from './guards/language.guard';
 import { LanguageService } from './services/language.service';
 import { HomeComponent } from './pages/home/home';
 import { DeveloperInfoComponent } from './pages/developer-info/developer-info';
+import { SystemRolesListComponent } from './pages/system-roles-list/system-roles-list';
 
 export const routes: Routes = [
   {
@@ -34,6 +35,16 @@ export const routes: Routes = [
           breadcrumb: [
             { label: 'Home', url: '' },
             { label: 'Developer Info' },
+          ],
+        },
+      },
+      {
+        path: 'roles',
+        component: SystemRolesListComponent,
+        data: {
+          breadcrumb: [
+            { label: 'Home', url: '' },
+            { label: 'System Roles' },
           ],
         },
       },

@@ -1,0 +1,13 @@
+<div class="p-6">
+  <h1 class="text-2xl font-semibold mb-4">System Roles</h1>
+
+  @if (roles().length > 0) {
+    <ul class="list-disc list-inside space-y-1">
+      @for (role of roles(); track role.name) {
+        <li>{{ role.name }}</li>
+      }
+    </ul>
+  } @else {
+    <p class="text-base">No roles found.</p>
+  }
+</div>
