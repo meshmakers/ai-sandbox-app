@@ -33,3 +33,10 @@ export const homeIcon: SVGIcon = {
   content: 'M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z',
   viewBox: '0 0 24 24',
 };
+
+export const securityIcon: SVGIcon = {
+  name: 'security',
+  content:
+    'M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4zm0 10.99h7c-.53 4.12-3.28 7.79-7 8.94V12H5V6.3l7-3.11v8.8z',
+  viewBox: '0 0 24 24',
+};

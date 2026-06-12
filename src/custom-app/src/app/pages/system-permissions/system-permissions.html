@@ -1,0 +1,17 @@
+<div class="p-6">
+  <h1 class="text-2xl font-semibold mb-4">System Permissions</h1>
+  <p class="text-base leading-relaxed mb-4">
+    Scopes the Custom-App is configured to request from the OctoMesh identity
+    service.
+  </p>
+
+  @if (scopes().length > 0) {
+    <ul class="list-disc list-inside space-y-1">
+      @for (scope of scopes(); track scope) {
+        <li><code>{{ scope }}</code></li>
+      }
+    </ul>
+  } @else {
+    <p class="text-gray-500">No scopes configured.</p>
+  }
+</div>

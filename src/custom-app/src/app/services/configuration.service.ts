@@ -3,6 +3,7 @@ import { Injectable, inject } from '@angular/core';
 import { firstValueFrom } from 'rxjs';
 import { ClientDto } from '../models/client.model';
 import { LanguageSettingsDto } from '../models/language-settings.model';
+import { parseScopes } from '../models/scopes';
 
 interface AppConfig {
   tenantId: string;
@@ -67,6 +68,10 @@ export class ConfigurationService {
 
   getTenantId(): string {
     return this.config?.tenantId ?? '';
+  }
+
+  getScopes(): string[] {
+    return parseScopes(this.config?.scope);
   }
 
   getGraphQLUri(): string {
