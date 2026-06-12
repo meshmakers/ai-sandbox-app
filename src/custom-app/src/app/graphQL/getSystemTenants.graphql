@@ -1,0 +1,12 @@
+query GetSystemTenants {
+  runtime {
+    systemTenant(first: 1000) {
+      edges {
+        node {
+          rtId
+          name
+        }
+      }
+    }
+  }
+}

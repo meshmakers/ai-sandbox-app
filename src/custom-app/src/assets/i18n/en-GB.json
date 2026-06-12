@@ -53,5 +53,12 @@
     "TITLE": "Maintenance Mode",
     "MESSAGE": "The application is currently undergoing maintenance and is temporarily unavailable.",
     "SUBMESSAGE": "Please try again later."
+  },
+  "PAGES": {
+    "SYSTEM_TENANT_LIST": {
+      "TITLE": "System Tenants",
+      "NAME": "Name",
+      "ID": "Id"
+    }
   }
 }

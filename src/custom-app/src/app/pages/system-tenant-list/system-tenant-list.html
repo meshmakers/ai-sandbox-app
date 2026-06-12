@@ -1,0 +1,16 @@
+<div class="p-6">
+  <h1 class="text-2xl font-semibold mb-4">
+    {{ 'PAGES.SYSTEM_TENANT_LIST.TITLE' | translate }}
+  </h1>
+
+  <kendo-grid [data]="tenants()" [loading]="loading()">
+    <kendo-grid-column
+      field="name"
+      [title]="'PAGES.SYSTEM_TENANT_LIST.NAME' | translate"
+    ></kendo-grid-column>
+    <kendo-grid-column
+      field="id"
+      [title]="'PAGES.SYSTEM_TENANT_LIST.ID' | translate"
+    ></kendo-grid-column>
+  </kendo-grid>
+</div>
