@@ -5,6 +5,7 @@ import { languageGuard } from './guards/language.guard';
 import { LanguageService } from './services/language.service';
 import { HomeComponent } from './pages/home/home';
 import { DeveloperInfoComponent } from './pages/developer-info/developer-info';
+import { AuditLogComponent } from './pages/audit-log/audit-log';
 
 export const routes: Routes = [
   {
@@ -56,6 +57,16 @@ export const routes: Routes = [
           breadcrumb: [
             { label: 'Home', url: '' },
             { label: 'Agent Sessions' },
+          ],
+        },
+      },
+      {
+        path: 'audit-log',
+        component: AuditLogComponent,
+        data: {
+          breadcrumb: [
+            { label: 'Home', url: '' },
+            { label: 'Audit Log' },
           ],
         },
       },

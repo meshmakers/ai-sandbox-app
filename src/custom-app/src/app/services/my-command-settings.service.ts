@@ -4,7 +4,7 @@ import {
   CommandItem,
   CommandSettingsService,
 } from '@meshmakers/shared-services';
-import { developerBoardIcon, gridIcon, homeIcon } from '../custom-svg-icons';
+import { auditLogIcon, developerBoardIcon, gridIcon, homeIcon } from '../custom-svg-icons';
 
 @Injectable()
 export class MyCommandSettingsService extends CommandSettingsService {
@@ -44,6 +44,13 @@ export class MyCommandSettingsService extends CommandSettingsService {
         text: 'Agent Sessions',
         svgIcon: gridIcon,
         link: async (): Promise<string> => 'agent-sessions',
+      },
+      {
+        id: 'audit-log',
+        type: 'link',
+        text: 'Audit Log',
+        svgIcon: auditLogIcon,
+        link: async (): Promise<string> => 'audit-log',
       },
     ];
   }

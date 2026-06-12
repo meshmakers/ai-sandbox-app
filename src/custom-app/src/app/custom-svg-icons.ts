@@ -40,3 +40,10 @@ export const gridIcon: SVGIcon = {
     'M3 3h8v8H3V3zm0 10h8v8H3v-8zM13 3h8v8h-8V3zm0 10h8v8h-8v-8z',
   viewBox: '0 0 24 24',
 };
+
+export const auditLogIcon: SVGIcon = {
+  name: 'audit-log',
+  content:
+    'M13 3a9 9 0 0 0-9 9H1l3.89 3.89.07.14L9 12H6a7 7 0 1 1 7 7c-1.93 0-3.68-.79-4.94-2.06l-1.42 1.42A8.954 8.954 0 0 0 13 21a9 9 0 0 0 0-18zm-1 5v5l4.28 2.54.72-1.21-3.5-2.08V8H12z',
+  viewBox: '0 0 24 24',
+};
