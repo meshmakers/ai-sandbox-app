@@ -1,0 +1,21 @@
+<div class="flex items-center justify-between mb-4">
+  <h1 class="text-xl font-semibold">Agent Sessions</h1>
+  <button kendoButton (click)="load()" [disabled]="loading()">Refresh</button>
+</div>
+
+<kendo-grid
+  [data]="entries()"
+  [loading]="loading()"
+  [pageable]="false"
+  [sortable]="true">
+  <kendo-grid-column field="rtId" title="Session Id"></kendo-grid-column>
+  <kendo-grid-column field="status" title="Status" [width]="120"></kendo-grid-column>
+  <kendo-grid-column field="jobKind" title="Job Kind" [width]="160"></kendo-grid-column>
+  <kendo-grid-column field="goalSummary" title="Goal"></kendo-grid-column>
+  <kendo-grid-column field="startedAt" title="Started" [width]="180">
+    <ng-template kendoGridCellTemplate let-row>{{ row.startedAt | date: 'short' }}</ng-template>
+  </kendo-grid-column>
+  <kendo-grid-column field="completedAt" title="Completed" [width]="180">
+    <ng-template kendoGridCellTemplate let-row>{{ row.completedAt ? (row.completedAt | date: 'short') : '—' }}</ng-template>
+  </kendo-grid-column>
+</kendo-grid>
