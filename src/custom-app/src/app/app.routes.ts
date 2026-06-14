@@ -70,6 +70,17 @@ export const routes: Routes = [
           ],
         },
       },
+      {
+        path: 'tenant-mode',
+        loadComponent: () =>
+          import('./pages/tenant-mode/tenant-mode').then((m) => m.TenantModeComponent),
+        data: {
+          breadcrumb: [
+            { label: 'Home', url: '' },
+            { label: 'Tenant Mode' },
+          ],
+        },
+      },
     ],
   },
   {

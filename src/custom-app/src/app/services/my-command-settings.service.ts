@@ -52,6 +52,13 @@ export class MyCommandSettingsService extends CommandSettingsService {
         svgIcon: auditLogIcon,
         link: async (): Promise<string> => 'audit-log',
       },
+      {
+        id: 'tenant-mode',
+        type: 'link',
+        text: 'Tenant Mode',
+        svgIcon: gridIcon,
+        link: async (): Promise<string> => 'tenant-mode',
+      },
     ];
   }
 

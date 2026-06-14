@@ -1,0 +1,13 @@
+<div class="flex items-center justify-between mb-4">
+  <h1 class="text-xl font-semibold">Tenant Mode</h1>
+  <button kendoButton (click)="load()" [disabled]="loading()">Refresh</button>
+</div>
+
+<kendo-grid
+  [data]="entries()"
+  [loading]="loading()"
+  [pageable]="false"
+  [sortable]="true">
+  <kendo-grid-column field="maintenanceLevel" title="Maintenance Level"></kendo-grid-column>
+  <kendo-grid-column field="environmentMode" title="Environment Mode"></kendo-grid-column>
+</kendo-grid>
