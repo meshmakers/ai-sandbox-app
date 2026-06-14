@@ -1,0 +1,16 @@
+query GetAgentSessions($first: Int) {
+  runtime {
+    GetAgentSessions: systemAiAiAgentSession(first: $first) {
+      edges {
+        node {
+          rtId
+          status
+          startedAt
+          completedAt
+          jobKind
+          goalSummary
+        }
+      }
+    }
+  }
+}

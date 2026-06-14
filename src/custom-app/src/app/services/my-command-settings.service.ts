@@ -38,6 +38,13 @@ export class MyCommandSettingsService extends CommandSettingsService {
         svgIcon: gridIcon,
         link: async (): Promise<string> => 'usage-records',
       },
+      {
+        id: 'agent-sessions',
+        type: 'link',
+        text: 'Agent Sessions',
+        svgIcon: gridIcon,
+        link: async (): Promise<string> => 'agent-sessions',
+      },
     ];
   }
 

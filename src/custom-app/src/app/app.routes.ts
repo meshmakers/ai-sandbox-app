@@ -48,6 +48,17 @@ export const routes: Routes = [
           ],
         },
       },
+      {
+        path: 'agent-sessions',
+        loadComponent: () =>
+          import('./pages/agent-sessions/agent-sessions').then((m) => m.AgentSessionsComponent),
+        data: {
+          breadcrumb: [
+            { label: 'Home', url: '' },
+            { label: 'Agent Sessions' },
+          ],
+        },
+      },
     ],
   },
   {
