@@ -1,0 +1,16 @@
+query GetAuditLog($first: Int) {
+  runtime {
+    systemAiAuditEvent(first: $first) {
+      edges {
+        node {
+          rtId
+          at
+          eventType
+          actorRef
+          targetRef
+          detail
+        }
+      }
+    }
+  }
+}

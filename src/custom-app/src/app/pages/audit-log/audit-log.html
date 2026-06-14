@@ -1,0 +1,36 @@
+<div class="p-6">
+  <div class="flex items-center justify-between mb-4">
+    <h1 class="text-2xl font-semibold">Audit Log</h1>
+    <button type="button" class="k-button k-button-md k-rounded-md k-button-solid k-button-solid-base"
+            (click)="load()" [disabled]="loading()">
+      Refresh
+    </button>
+  </div>
+  <p class="text-base leading-relaxed mb-4">
+    Security- and lifecycle-relevant audit events for this tenant — credential
+    registrations, approval decisions, quota threshold crossings and admin actions.
+  </p>
+
+  @if (error(); as errorMessage) {
+    <div class="mb-4 p-4 border border-red-300 bg-red-50 text-red-800 rounded">
+      <strong>Failed to load audit log.</strong> {{ errorMessage }}
+      <button type="button" class="ml-2 underline" (click)="load()">Try again</button>
+    </div>
+  }
+
+  <kendo-grid [data]="entries()" [loading]="loading()" [height]="600">
+    <kendo-grid-column field="at" title="Timestamp" [width]="200">
+      <ng-template kendoGridCellTemplate let-dataItem>
+        {{ dataItem.at | date: 'yyyy-MM-dd HH:mm:ss' }}
+      </ng-template>
+    </kendo-grid-column>
+    <kendo-grid-column field="eventType" title="Event Type" [width]="220"></kendo-grid-column>
+    <kendo-grid-column field="actorRef" title="Actor" [width]="180"></kendo-grid-column>
+    <kendo-grid-column field="targetRef" title="Target" [width]="220"></kendo-grid-column>
+    <kendo-grid-column field="detail" title="Detail"></kendo-grid-column>
+
+    <ng-template kendoGridNoRecordsTemplate>
+      No audit events available.
+    </ng-template>
+  </kendo-grid>
+</div>
