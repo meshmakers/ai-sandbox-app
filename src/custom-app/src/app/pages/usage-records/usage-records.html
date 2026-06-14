@@ -1,0 +1,21 @@
+<div class="flex items-center justify-between mb-4">
+  <h1 class="text-xl font-semibold">Usage Records</h1>
+  <button kendoButton (click)="load()" [disabled]="loading()">Refresh</button>
+</div>
+
+<kendo-grid
+  [data]="entries()"
+  [loading]="loading()"
+  [pageable]="false"
+  [sortable]="true">
+  <kendo-grid-column field="rtId" title="Record Id"></kendo-grid-column>
+  <kendo-grid-column field="at" title="Timestamp">
+    <ng-template kendoGridCellTemplate let-row>{{ row.at | date: 'short' }}</ng-template>
+  </kendo-grid-column>
+  <kendo-grid-column field="model" title="Model"></kendo-grid-column>
+  <kendo-grid-column field="inputTokens" title="Input Tokens"></kendo-grid-column>
+  <kendo-grid-column field="outputTokens" title="Output Tokens"></kendo-grid-column>
+  <kendo-grid-column field="costCents" title="Cost (EUR)">
+    <ng-template kendoGridCellTemplate let-row>{{ row.costCents / 100 | number: '1.2-2' }}</ng-template>
+  </kendo-grid-column>
+</kendo-grid>
