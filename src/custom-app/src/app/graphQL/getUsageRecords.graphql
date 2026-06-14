@@ -1,0 +1,16 @@
+query GetUsageRecords($first: Int) {
+  runtime {
+    systemAiAiUsageRecord(first: $first) {
+      edges {
+        node {
+          rtId
+          at
+          model
+          inputTokens
+          outputTokens
+          costCents
+        }
+      }
+    }
+  }
+}

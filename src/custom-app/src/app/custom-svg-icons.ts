@@ -33,3 +33,10 @@ export const homeIcon: SVGIcon = {
   content: 'M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z',
   viewBox: '0 0 24 24',
 };
+
+export const gridIcon: SVGIcon = {
+  name: 'grid',
+  content:
+    'M3 3h8v8H3V3zm0 10h8v8H3v-8zM13 3h8v8h-8V3zm0 10h8v8h-8v-8z',
+  viewBox: '0 0 24 24',
+};

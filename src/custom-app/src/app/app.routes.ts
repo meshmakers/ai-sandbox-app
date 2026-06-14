@@ -37,6 +37,17 @@ export const routes: Routes = [
           ],
         },
       },
+      {
+        path: 'usage-records',
+        loadComponent: () =>
+          import('./pages/usage-records/usage-records').then((m) => m.UsageRecordsComponent),
+        data: {
+          breadcrumb: [
+            { label: 'Home', url: '' },
+            { label: 'Usage Records' },
+          ],
+        },
+      },
     ],
   },
   {
