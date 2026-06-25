@@ -34,9 +34,11 @@ RUN echo "@meshmakers:registry=${NPM_PRIVATE_URI:-https://registry.npmjs.org}" >
     }); \
     fs.writeFileSync('package.json', JSON.stringify(pkg, null, 2)); \
   " \
-  && npm install --package-lock-only --ignore-scripts --legacy-peer-deps
+  && npm install --package-lock-only --ignore-scripts
 
-RUN npm ci --ignore-scripts --legacy-peer-deps
+# Published @meshmakers/* libs now peer @angular/* ^22 (Tier 0 shipped on v22),
+# so a strict install resolves cleanly.
+RUN npm ci --ignore-scripts
 
 COPY src/custom-app/ ./
 
