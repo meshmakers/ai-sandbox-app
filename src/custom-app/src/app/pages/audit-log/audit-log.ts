@@ -1,16 +1,24 @@
-import { Component, DestroyRef, OnInit, inject, signal } from '@angular/core';
-import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { DatePipe } from '@angular/common';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  DestroyRef,
+  OnInit,
+  inject,
+  signal,
+} from '@angular/core';
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { GridModule } from '@progress/kendo-angular-grid';
 import { finalize } from 'rxjs/operators';
-import { AuditLogService } from '../../services/audit-log.service';
 import { AuditLogEntry } from '../../models/audit-log-entry';
+import { AuditLogService } from '../../services/audit-log.service';
 
 @Component({
   selector: 'app-audit-log',
   standalone: true,
   imports: [GridModule, DatePipe],
   templateUrl: './audit-log.html',
+  changeDetection: ChangeDetectionStrategy.Eager,
   styleUrl: './audit-log.scss',
 })
 export class AuditLogComponent implements OnInit {
@@ -32,13 +40,15 @@ export class AuditLogComponent implements OnInit {
       .fetchAuditLog()
       .pipe(
         takeUntilDestroyed(this.destroyRef),
-        finalize(() => this.loading.set(false)),
+        finalize(() => this.loading.set(false))
       )
       .subscribe({
         next: (entries) => this.entries.set(entries),
         error: (err: unknown) => {
           this.entries.set([]);
-          this.error.set(err instanceof Error ? err.message : 'Failed to load audit log.');
+          this.error.set(
+            err instanceof Error ? err.message : 'Failed to load audit log.'
+          );
         },
       });
   }

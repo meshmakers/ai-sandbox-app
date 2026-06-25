@@ -48,6 +48,7 @@ module.exports = tseslint.config(
       '@angular-eslint/component-class-suffix': 'error',
       '@angular-eslint/directive-class-suffix': 'error',
       '@angular-eslint/use-lifecycle-interface': 'error',
+      '@angular-eslint/prefer-on-push-component-change-detection': 'off',
     },
   },
   {

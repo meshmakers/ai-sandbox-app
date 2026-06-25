@@ -1,17 +1,25 @@
-import { Component, DestroyRef, OnInit, inject, signal } from '@angular/core';
-import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { DatePipe } from '@angular/common';
-import { GridModule } from '@progress/kendo-angular-grid';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  DestroyRef,
+  OnInit,
+  inject,
+  signal,
+} from '@angular/core';
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { ButtonModule } from '@progress/kendo-angular-buttons';
+import { GridModule } from '@progress/kendo-angular-grid';
 import { finalize } from 'rxjs/operators';
-import { AgentSessionsService } from '../../services/agent-sessions.service';
 import { AgentSessionsEntry } from '../../models/agent-sessions-entry';
+import { AgentSessionsService } from '../../services/agent-sessions.service';
 
 @Component({
   selector: 'app-agent-sessions',
   standalone: true,
   imports: [GridModule, ButtonModule, DatePipe],
   templateUrl: './agent-sessions.html',
+  changeDetection: ChangeDetectionStrategy.Eager,
   styleUrl: './agent-sessions.scss',
 })
 export class AgentSessionsComponent implements OnInit {
@@ -31,7 +39,7 @@ export class AgentSessionsComponent implements OnInit {
       .fetchAgentSessions()
       .pipe(
         takeUntilDestroyed(this.destroyRef),
-        finalize(() => this.loading.set(false)),
+        finalize(() => this.loading.set(false))
       )
       .subscribe((entries) => this.entries.set(entries));
   }
