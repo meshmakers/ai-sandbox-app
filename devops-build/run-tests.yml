@@ -2,7 +2,7 @@ steps:
   - task: NodeTool@0
     displayName: 'Install Node.js'
     inputs:
-      versionSpec: '22.x'
+      versionSpec: '24.15.x'
 
   - task: CmdLine@2
     displayName: 'Replace file: references with registry versions'

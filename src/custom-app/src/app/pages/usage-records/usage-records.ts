@@ -1,15 +1,22 @@
-import { Component, OnInit, inject, signal } from '@angular/core';
 import { DatePipe, DecimalPipe } from '@angular/common';
-import { GridModule } from '@progress/kendo-angular-grid';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  OnInit,
+  inject,
+  signal,
+} from '@angular/core';
 import { ButtonModule } from '@progress/kendo-angular-buttons';
-import { UsageRecordsService } from '../../services/usage-records.service';
+import { GridModule } from '@progress/kendo-angular-grid';
 import { UsageRecordsEntry } from '../../models/usage-records-entry';
+import { UsageRecordsService } from '../../services/usage-records.service';
 
 @Component({
   selector: 'app-usage-records',
   standalone: true,
   imports: [GridModule, ButtonModule, DatePipe, DecimalPipe],
   templateUrl: './usage-records.html',
+  changeDetection: ChangeDetectionStrategy.Eager,
   styleUrl: './usage-records.scss',
 })
 export class UsageRecordsComponent implements OnInit {

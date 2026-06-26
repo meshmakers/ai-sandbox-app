@@ -1,14 +1,21 @@
-import { Component, OnInit, inject, signal } from '@angular/core';
-import { GridModule } from '@progress/kendo-angular-grid';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  OnInit,
+  inject,
+  signal,
+} from '@angular/core';
 import { ButtonModule } from '@progress/kendo-angular-buttons';
-import { TenantModeService } from '../../services/tenant-mode.service';
+import { GridModule } from '@progress/kendo-angular-grid';
 import { TenantModeEntry } from '../../models/tenant-mode-entry';
+import { TenantModeService } from '../../services/tenant-mode.service';
 
 @Component({
   selector: 'app-tenant-mode',
   standalone: true,
   imports: [GridModule, ButtonModule],
   templateUrl: './tenant-mode.html',
+  changeDetection: ChangeDetectionStrategy.Eager,
   styleUrl: './tenant-mode.scss',
 })
 export class TenantModeComponent implements OnInit {
