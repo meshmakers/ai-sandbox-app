@@ -18,8 +18,8 @@ After cloning, run `./init.sh` to customize the template for your project.
 
 ## Tech Stack
 
-- Angular 21 (standalone components, signals)
-- Kendo UI for Angular 21
+- Angular 22 (standalone components, signals)
+- Kendo UI for Angular 24
 - Apollo GraphQL Client
 - Tailwind CSS 4
 - Vitest (testing)
@@ -31,7 +31,7 @@ After cloning, run `./init.sh` to customize the template for your project.
 - **ALWAYS run `npm run lint && npm run test:ci && npm run build:prod`** locally before committing and pushing
 - This catches lint errors, test failures, and TypeScript compilation errors before CI
 - Test files follow the pattern `*.spec.ts` next to the source file they test
-- Components that import `@meshmakers/shared-ui` cannot be tested directly in vitest (cronstrue ESM issue) — use pure logic tests instead
+- Unit tests only, on Vitest: extract logic out of components that render `@meshmakers/*` widgets into pure, testable units and test those first.
 
 ## Unit Tests
 
@@ -79,7 +79,7 @@ npm run codegen
 
 ## Key Patterns
 
-### Standalone Components (Angular 21)
+### Standalone Components (Angular 22)
 All components are standalone. No NgModules. Use `imports` array directly:
 ```typescript
 @Component({
