@@ -22,7 +22,7 @@ After cloning, run `./init.sh` to customize the template for your project.
 - Kendo UI for Angular 21
 - Apollo GraphQL Client
 - Tailwind CSS 4
-- Vitest + Playwright (testing)
+- Vitest (testing)
 - TypeScript 5.9
 
 ## Pre-Commit Rules (CRITICAL)
@@ -31,7 +31,17 @@ After cloning, run `./init.sh` to customize the template for your project.
 - **ALWAYS run `npm run lint && npm run test:ci && npm run build:prod`** locally before committing and pushing
 - This catches lint errors, test failures, and TypeScript compilation errors before CI
 - Test files follow the pattern `*.spec.ts` next to the source file they test
-- Components that import `@meshmakers/shared-ui` cannot be tested directly in vitest (cronstrue ESM issue) — use pure logic tests or Playwright e2e tests instead
+- Components that import `@meshmakers/shared-ui` cannot be tested directly in vitest (cronstrue ESM issue) — use pure logic tests instead
+
+## Unit Tests
+
+- Runner: `@angular/build:unit-test` with Vitest (`runner: "vitest"` in the `test` architect
+  target of `angular.json`), environment jsdom — no browser mode, no Playwright.
+- `npm run test:ci` (`ng test --configuration ci`) writes the JUnit report to
+  `test-results/TESTS-junit.xml` (`test.configurations.ci.outputFile` in `angular.json`); CI
+  publishes it via `PublishTestResults@2` (`**/test-results/**/*.xml` glob in
+  `devops-build/run-tests.yml`).
+- `npm run test` (`ng test`) runs the same suite without writing JUnit, for local iteration.
 
 ## Build & Development
 
