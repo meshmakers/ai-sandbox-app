@@ -43,6 +43,16 @@ After cloning, run `./init.sh` to customize the template for your project.
   `devops-build/run-tests.yml`).
 - `npm run test` (`ng test`) runs the same suite without writing JUnit, for local iteration.
 
+## npm allowScripts Policy
+
+`package.json`'s `allowScripts` allowlist declares which dependencies may run install/postinstall
+scripts (`npm approve-scripts`). Currently allowed: `@parcel/watcher`, `@progress/kendo-licensing`
+(required for `npm run setup-license`), `esbuild`, `fsevents`, `lmdb`, `msgpackr-extract`. After
+changing dependencies with native/postinstall scripts, re-run
+`npm approve-scripts --allow-scripts-pending` to review, then
+`npm approve-scripts --no-allow-scripts-pin --all` to write name-only entries. Drop stale entries
+whose package is no longer in `npm ls --all`.
+
 ## Build & Development
 
 ```bash
