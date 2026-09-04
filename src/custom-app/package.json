@@ -62,7 +62,7 @@
     "@progress/kendo-angular-tooltip": "24.1.0",
     "@progress/kendo-angular-treeview": "24.1.0",
     "@progress/kendo-angular-upload": "24.1.0",
-    "@progress/kendo-angular-utils": "24.1.0",
+    "@progress/kendo-angular-utils": "25.0.0",
     "@progress/kendo-data-query": "1.7.3",
     "@progress/kendo-drawing": "1.25.0",
     "@progress/kendo-licensing": "1.11.0",
