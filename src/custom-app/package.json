@@ -54,7 +54,7 @@
     "@progress/kendo-angular-menu": "24.1.0",
     "@progress/kendo-angular-navigation": "24.1.0",
     "@progress/kendo-angular-notification": "24.1.0",
-    "@progress/kendo-angular-pager": "24.1.0",
+    "@progress/kendo-angular-pager": "25.0.0",
     "@progress/kendo-angular-pdf-export": "24.1.0",
     "@progress/kendo-angular-popup": "24.1.0",
     "@progress/kendo-angular-progressbar": "24.1.0",
