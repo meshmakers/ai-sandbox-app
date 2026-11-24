@@ -99,7 +99,7 @@
     "angular-eslint": "22.2.0",
     "eslint": "10.9.1",
     "eslint-config-prettier": "10.1.8",
-    "jsdom": "^30.0.1",
+    "jsdom": "^31.0.1",
     "prettier": "3.9.6",
     "prettier-plugin-multiline-arrays": "4.1.11",
     "prettier-plugin-organize-imports": "4.3.0",
