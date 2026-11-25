@@ -428,8 +428,6 @@ dist/
 coverage/
 .nyc_output/
 test-results/
-src/custom-app/src/app/graphQL/globalTypes.ts
-src/custom-app/src/app/graphQL/*.generated.ts
 
 # SSL dev certificates
 localhost.crt
