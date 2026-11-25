@@ -440,6 +440,5 @@ ca.crt
 package-lock.json
 !src/custom-app/package-lock.json
 
-# OctoMesh runtime GraphQL schema (downloaded per-session input for codegen)
+# OctoMesh runtime GraphQL schema download (codegen reads the committed src/custom-app/schema.graphql)
 src/custom-app/schema.json
-src/custom-app/schema.graphql

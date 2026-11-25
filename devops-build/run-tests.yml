@@ -50,6 +50,12 @@ steps:
       workingDirectory: $(System.DefaultWorkingDirectory)/src/custom-app
 
   - task: CmdLine@2
+    displayName: 'Check generated GraphQL code is up to date'
+    inputs:
+      script: npm run codegen:check
+      workingDirectory: $(System.DefaultWorkingDirectory)/src/custom-app
+
+  - task: CmdLine@2
     displayName: 'Run lint'
     inputs:
       script: npm run lint

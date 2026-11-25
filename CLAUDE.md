@@ -106,10 +106,16 @@ Short names without `.component` suffix: `home.ts`, `home.html`, `home.scss`.
 Runtime config loaded from `/assets/config.json`. In Docker, environment variables override config via `entrypoint.sh`.
 
 ### GraphQL Codegen Workflow
-1. Copy/update `schema.graphql` from OctoMesh API
+1. `src/custom-app/schema.graphql` is committed: the System schema of octo-frontend-libraries
+   (`src/frontend-libraries/schema.graphql` at cb8bc5df). Queries on your own CK model need a schema export
+   from a tenant that has that model in its place
 2. Create `.graphql` query files in `src/app/graphQL/`
-3. Run `npm run codegen`
+3. Run `npm run codegen` (graphql-codegen 8; the hook `scripts/codegen-strip-incremental.mjs` removes the
+   per-file `Incremental` type) and commit the generated files
 4. Import generated services in your components
+
+CI runs `npm run codegen:check` after `npm ci`: it regenerates and fails when the result differs from the
+committed files.
 
 Example query file (`src/app/graphQL/getAssets.graphql`):
 ```graphql

@@ -14,14 +14,19 @@ describe('mapAuditLogResult', () => {
       at: string;
       eventType: string;
       actorRef: string;
-      targetRef?: string | null;
-      detail?: string | null;
+      targetRef: string | null;
+      detail: string | null;
     }[],
   ): GetAuditLogQuery {
     return {
       runtime: {
-        systemAiAuditEvent: {
-          edges: nodes.map((node) => ({ node })),
+        __typename: 'RuntimeModelQuery',
+        systemAiAiAuditEvent: {
+          __typename: 'SystemAiAiAuditEventConnection',
+          edges: nodes.map((node) => ({
+            __typename: 'SystemAiAiAuditEventEdge',
+            node: { __typename: 'SystemAiAiAuditEvent', ...node },
+          })),
         },
       },
     };
@@ -53,7 +58,7 @@ describe('mapAuditLogResult', () => {
     ]);
   });
 
-  it('normalises missing optional fields to null', () => {
+  it('keeps empty optional fields as null', () => {
     const result = mapAuditLogResult(
       nodeResult([
         {
@@ -61,6 +66,8 @@ describe('mapAuditLogResult', () => {
           at: '2026-06-12T11:00:00Z',
           eventType: 'quota.exceeded',
           actorRef: 'agent',
+          targetRef: null,
+          detail: null,
         },
       ]),
     );
@@ -72,11 +79,15 @@ describe('mapAuditLogResult', () => {
   it('skips null nodes in the edge list', () => {
     const data: GetAuditLogQuery = {
       runtime: {
-        systemAiAuditEvent: {
+        __typename: 'RuntimeModelQuery',
+        systemAiAiAuditEvent: {
+          __typename: 'SystemAiAiAuditEventConnection',
           edges: [
-            { node: null },
+            { __typename: 'SystemAiAiAuditEventEdge', node: null },
             {
+              __typename: 'SystemAiAiAuditEventEdge',
               node: {
+                __typename: 'SystemAiAiAuditEvent',
                 rtId: '3',
                 at: '2026-06-12T12:00:00Z',
                 eventType: 'approval.decided',
@@ -96,7 +107,13 @@ describe('mapAuditLogResult', () => {
   });
 
   it('returns an empty array when there are no edges', () => {
-    expect(mapAuditLogResult({ runtime: { systemAiAuditEvent: { edges: [] } } })).toEqual([]);
+    const emptyResult: GetAuditLogQuery = {
+      runtime: {
+        __typename: 'RuntimeModelQuery',
+        systemAiAiAuditEvent: { __typename: 'SystemAiAiAuditEventConnection', edges: [] },
+      },
+    };
+    expect(mapAuditLogResult(emptyResult)).toEqual([]);
   });
 
   it('returns an empty array for null/undefined data', () => {
