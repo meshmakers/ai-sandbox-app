@@ -1,7 +1,4 @@
 overwrite: true
-hooks:
-  afterAllFileWrite:
-    - node scripts/codegen-strip-incremental.mjs
 # schema.graphql is the System schema of octo-frontend-libraries (src/frontend-libraries/schema.graphql at cb8bc5df), copied verbatim.
 schema: 'schema.graphql'
 documents: 'src/app/graphQL/*.graphql'
@@ -12,12 +9,13 @@ generates:
     config:
       enumsAsTypes: true
       typeSuffix: 'Dto'
+      onlyOperationTypes: true
       scalars: &scalars
         OctoObjectId: string
-        CkAttributeId: string
-        CkEnumId: string
-        CkRecordId: string
-        CkTypeId: string
+        RtCkAssociationRoleId: string
+        RtCkEnumId: string
+        RtCkRecordId: string
+        RtCkTypeId: string
         BigInt: any
         Byte: any
         CkVersion: any
@@ -26,10 +24,6 @@ generates:
         Decimal: any
         LargeBinary: any
         Long: any
-        RtCkAssociationRoleId: any
-        RtCkEnumId: any
-        RtCkRecordId: any
-        RtCkTypeId: any
         Seconds: any
         SimpleScalar: any
         ULong: any

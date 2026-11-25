@@ -106,17 +106,15 @@ Short names without `.component` suffix: `home.ts`, `home.html`, `home.scss`.
 Runtime config loaded from `/assets/config.json`. In Docker, environment variables override config via `entrypoint.sh`.
 
 ### GraphQL Codegen Workflow
-1. `src/custom-app/schema.graphql` is committed: the System schema of octo-frontend-libraries
-   (`src/frontend-libraries/schema.graphql` at cb8bc5df). Queries on your own CK model need a schema export
-   from a tenant that has that model in its place
+The schema is committed, the code is generated and not committed:
+1. `src/custom-app/schema.graphql` is the System schema of octo-frontend-libraries
+   (`src/frontend-libraries/schema.graphql` at cb8bc5df). To refresh it, or for queries on your own CK model,
+   replace it with the schema export of a tenant that has that model and commit it
 2. Create `.graphql` query files in `src/app/graphQL/`
-3. Run `npm run codegen` (graphql-codegen 8; the hook `scripts/codegen-strip-incremental.mjs` removes the
-   per-file `Incremental` type) and commit the generated files
+3. `npm run codegen` (graphql-codegen 8) writes `globalTypes.ts` and the `*.generated.ts` files (gitignored).
+   `prestart`, `prebuild`, `prebuild:prod`, `pretest`, `pretest:ci` and `prelint` run it, so a fresh clone needs no
+   manual step; CI runs it as its own step after `npm ci`, and an invalid document fails it
 4. Import generated services in your components
-
-CI runs `npm run codegen:check` after `npm ci` (`scripts/codegen-check.mjs`, plain Node, so it also runs in
-cmd.exe): it regenerates and fails when a generated file differs from the committed one, is new or deleted and not
-committed, or has no matching `.graphql` document left.
 
 Example query file (`src/app/graphQL/getAssets.graphql`):
 ```graphql
