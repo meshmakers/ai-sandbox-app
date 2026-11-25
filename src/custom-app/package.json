@@ -15,7 +15,7 @@
     "lint": "ng lint",
     "lint:fix": "ng lint --fix",
     "codegen": "graphql-codegen --config codegen.yml",
-    "codegen:check": "graphql-codegen --config codegen.yml && git diff --exit-code -- src/app/graphQL && test -z \"$(git status --porcelain -- src/app/graphQL)\"",
+    "codegen:check": "node scripts/codegen-check.mjs",
     "postinstall": "node src/environments/version.ts",
     "format": "prettier --write \"src/**/*.{ts,html,scss}\"",
     "format:check": "prettier --check \"src/**/*.{ts,html,scss}\""

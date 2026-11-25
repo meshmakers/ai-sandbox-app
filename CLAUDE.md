@@ -114,8 +114,9 @@ Runtime config loaded from `/assets/config.json`. In Docker, environment variabl
    per-file `Incremental` type) and commit the generated files
 4. Import generated services in your components
 
-CI runs `npm run codegen:check` after `npm ci`: it regenerates and fails when the result differs from the
-committed files.
+CI runs `npm run codegen:check` after `npm ci` (`scripts/codegen-check.mjs`, plain Node, so it also runs in
+cmd.exe): it regenerates and fails when a generated file differs from the committed one, is new or deleted and not
+committed, or has no matching `.graphql` document left.
 
 Example query file (`src/app/graphQL/getAssets.graphql`):
 ```graphql
