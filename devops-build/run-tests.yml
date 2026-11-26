@@ -50,12 +50,6 @@ steps:
       workingDirectory: $(System.DefaultWorkingDirectory)/src/custom-app
 
   - task: CmdLine@2
-    displayName: 'Generate GraphQL code'
-    inputs:
-      script: npm run codegen
-      workingDirectory: $(System.DefaultWorkingDirectory)/src/custom-app
-
-  - task: CmdLine@2
     displayName: 'Run lint'
     inputs:
       script: npm run lint

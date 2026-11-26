@@ -1,5 +1,4 @@
 overwrite: true
-# schema.graphql is the System schema of octo-frontend-libraries (src/frontend-libraries/schema.graphql at cb8bc5df), copied verbatim.
 schema: 'schema.graphql'
 documents: 'src/app/graphQL/*.graphql'
 generates:

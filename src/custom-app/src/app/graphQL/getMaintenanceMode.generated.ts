@@ -1,0 +1,40 @@
+import type * as Types from './globalTypes';
+
+import { gql } from 'apollo-angular';
+import { Injectable } from '@angular/core';
+import * as Apollo from 'apollo-angular';
+/** Internal type. DO NOT USE DIRECTLY. */
+type Exact<T extends { [key: string]: unknown }> = { [K in keyof T]: T[K] };
+/** Internal type. DO NOT USE DIRECTLY. */
+export type Incremental<T> = T | { [P in keyof T]?: P extends ' $fragmentName' | '__typename' ? T[P] : never };
+export type GetMaintenanceModeQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+export type GetMaintenanceModeQuery = { runtime: { __typename: 'RuntimeModelQuery', systemTenantModeConfiguration: { __typename: 'SystemTenantModeConfigurationConnection', edges: Array<{ __typename: 'SystemTenantModeConfigurationEdge', node: { __typename: 'SystemTenantModeConfiguration', rtId: string, maintenanceLevel: Types.SystemMaintenanceLevels, environmentMode: Types.SystemEnvironmentModes } | null } | null> | null } | null } | null };
+
+export const GetMaintenanceModeDocument = gql`
+    query GetMaintenanceMode {
+  runtime {
+    systemTenantModeConfiguration(first: 1) {
+      edges {
+        node {
+          rtId
+          maintenanceLevel
+          environmentMode
+        }
+      }
+    }
+  }
+}
+    `;
+
+  @Injectable({
+    providedIn: 'root'
+  })
+  export class GetMaintenanceModeGQL extends Apollo.Query<GetMaintenanceModeQuery, GetMaintenanceModeQueryVariables> {
+    document = GetMaintenanceModeDocument;
+    
+    constructor(apollo: Apollo.Apollo) {
+      super(apollo);
+    }
+  }
