@@ -112,8 +112,7 @@ The schema is committed, the code is generated and not committed:
    replace it with the schema export of a tenant that has that model and commit it
 2. Create `.graphql` query files in `src/app/graphQL/`
 3. `npm run codegen` (graphql-codegen 8) writes `globalTypes.ts` and the `*.generated.ts` files (gitignored).
-   `prestart`, `prebuild`, `prebuild:prod`, `pretest`, `pretest:ci` and `prelint` run it, so a fresh clone needs no
-   manual step; CI runs it as its own step after `npm ci`, and an invalid document fails it
+   After cloning and after changing a `.graphql` file run `npm run codegen`; CI and the Docker build run it
 4. Import generated services in your components
 
 Example query file (`src/app/graphQL/getAssets.graphql`):
