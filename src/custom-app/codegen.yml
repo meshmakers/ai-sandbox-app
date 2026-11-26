@@ -11,6 +11,10 @@ generates:
       onlyOperationTypes: true
       scalars: &scalars
         OctoObjectId: string
+        CkAttributeId: string
+        CkEnumId: string
+        CkRecordId: string
+        CkTypeId: string
         RtCkAssociationRoleId: string
         RtCkEnumId: string
         RtCkRecordId: string
