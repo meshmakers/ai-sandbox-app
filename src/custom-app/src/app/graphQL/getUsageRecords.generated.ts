@@ -1,14 +1,16 @@
-import * as Types from './globalTypes';
-
 import { gql } from 'apollo-angular';
 import { Injectable } from '@angular/core';
 import * as Apollo from 'apollo-angular';
-export type GetUsageRecordsQueryVariables = Types.Exact<{
-  first?: Types.InputMaybe<Types.Scalars['Int']['input']>;
+/** Internal type. DO NOT USE DIRECTLY. */
+type Exact<T extends { [key: string]: unknown }> = { [K in keyof T]: T[K] };
+/** Internal type. DO NOT USE DIRECTLY. */
+export type Incremental<T> = T | { [P in keyof T]?: P extends ' $fragmentName' | '__typename' ? T[P] : never };
+export type GetUsageRecordsQueryVariables = Exact<{
+  first?: number | null | undefined;
 }>;
 
 
-export type GetUsageRecordsQuery = { __typename?: 'OctoQuery', runtime?: { __typename?: 'RuntimeModelQuery', systemAiAiUsageRecord?: { __typename?: 'SystemAiAiUsageRecordConnection', edges?: Array<{ __typename?: 'SystemAiAiUsageRecordEdge', node?: { __typename?: 'SystemAiAiUsageRecord', rtId: string, at: any, model: string, inputTokens: number, outputTokens: number, costCents: any } | null } | null> | null } | null } | null };
+export type GetUsageRecordsQuery = { runtime: { __typename: 'RuntimeModelQuery', systemAiAiUsageRecord: { __typename: 'SystemAiAiUsageRecordConnection', edges: Array<{ __typename: 'SystemAiAiUsageRecordEdge', node: { __typename: 'SystemAiAiUsageRecord', rtId: string, at: any, model: string, inputTokens: number, outputTokens: number, costCents: any } | null } | null> | null } | null } | null };
 
 export const GetUsageRecordsDocument = gql`
     query GetUsageRecords($first: Int) {

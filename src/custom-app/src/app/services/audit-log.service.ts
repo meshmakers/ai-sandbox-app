@@ -34,7 +34,7 @@ export class AuditLogService {
 export function mapAuditLogResult(
   data: GetAuditLogQuery | null | undefined,
 ): AuditLogEntry[] {
-  const edges = data?.runtime?.systemAiAuditEvent?.edges ?? [];
+  const edges = data?.runtime?.systemAiAiAuditEvent?.edges ?? [];
   return edges
     .map((edge) => edge?.node)
     .filter((node): node is NonNullable<typeof node> => node != null)

@@ -1,21 +1,21 @@
 import { gql } from 'apollo-angular';
 import { Injectable } from '@angular/core';
 import * as Apollo from 'apollo-angular';
-
-export type Maybe<T> = T | null;
-export type InputMaybe<T> = Maybe<T>;
-export type Exact<T extends { [key: string]: unknown }> = { [K in keyof T]: T[K] };
-
+/** Internal type. DO NOT USE DIRECTLY. */
+type Exact<T extends { [key: string]: unknown }> = { [K in keyof T]: T[K] };
+/** Internal type. DO NOT USE DIRECTLY. */
+export type Incremental<T> = T | { [P in keyof T]?: P extends ' $fragmentName' | '__typename' ? T[P] : never };
 export type GetAuditLogQueryVariables = Exact<{
-  first?: InputMaybe<number>;
+  first?: number | null | undefined;
 }>;
 
-export type GetAuditLogQuery = { __typename?: 'OctoQuery', runtime?: { __typename?: 'RuntimeModelQuery', systemAiAuditEvent?: { __typename?: 'SystemAiAuditEventConnection', edges?: Array<{ __typename?: 'SystemAiAuditEventEdge', node?: { __typename?: 'SystemAiAuditEvent', rtId: string, at: string, eventType: string, actorRef: string, targetRef?: string | null, detail?: string | null } | null } | null> | null } | null } | null };
+
+export type GetAuditLogQuery = { runtime: { __typename: 'RuntimeModelQuery', systemAiAiAuditEvent: { __typename: 'SystemAiAiAuditEventConnection', edges: Array<{ __typename: 'SystemAiAiAuditEventEdge', node: { __typename: 'SystemAiAiAuditEvent', rtId: string, at: any, eventType: string, actorRef: string, targetRef: string | null, detail: string | null } | null } | null> | null } | null } | null };
 
 export const GetAuditLogDocument = gql`
     query GetAuditLog($first: Int) {
   runtime {
-    systemAiAuditEvent(first: $first) {
+    systemAiAiAuditEvent(first: $first) {
       edges {
         node {
           rtId
@@ -36,7 +36,7 @@ export const GetAuditLogDocument = gql`
   })
   export class GetAuditLogGQL extends Apollo.Query<GetAuditLogQuery, GetAuditLogQueryVariables> {
     document = GetAuditLogDocument;
-
+    
     constructor(apollo: Apollo.Apollo) {
       super(apollo);
     }

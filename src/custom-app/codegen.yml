@@ -8,26 +8,40 @@ generates:
     config:
       enumsAsTypes: true
       typeSuffix: 'Dto'
-      scalars:
+      onlyOperationTypes: true
+      scalars: &scalars
         OctoObjectId: string
         CkAttributeId: string
         CkEnumId: string
         CkRecordId: string
         CkTypeId: string
+        RtCkAssociationRoleId: string
+        RtCkEnumId: string
+        RtCkRecordId: string
+        RtCkTypeId: string
+        BigInt: any
+        Byte: any
+        CkVersion: any
+        DateTime: any
+        DateTimeOffset: any
+        Decimal: any
+        LargeBinary: any
+        Long: any
+        Seconds: any
+        SimpleScalar: any
+        ULong: any
+        Uri: any
   src/app/graphQL/:
     preset: near-operation-file
     presetConfig:
       extension: .generated.ts
-      baseTypesPath: globalTypes.ts
     plugins:
       - 'typescript-operations'
       - 'typescript-apollo-angular'
     config:
       enumsAsTypes: true
       typeSuffix: 'Dto'
-      scalars:
-        OctoObjectId: string
-        CkAttributeId: string
-        CkEnumId: string
-        CkRecordId: string
-        CkTypeId: string
+      importSchemaTypesFrom: src/app/graphQL/globalTypes
+      nonOptionalTypename: true
+      skipTypeNameForRoot: true
+      scalars: *scalars

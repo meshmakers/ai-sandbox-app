@@ -1,6 +1,6 @@
 query GetAuditLog($first: Int) {
   runtime {
-    systemAiAuditEvent(first: $first) {
+    systemAiAiAuditEvent(first: $first) {
       edges {
         node {
           rtId
